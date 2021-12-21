@@ -1,0 +1,40 @@
+body{
+  background-repeat: no-repeat;
+    background-size: cover;
+  background-image: url('https://19yw4b240vb03ws8qm25h366-wpengine.netdna-ssl.com/wp-content/uploads/5-Best-Free-and-Paid-Weather-APIs-2019-e1587582023501.png');
+}
+.weather-card{
+  background-color: rgba(52,52,52,.7);
+    padding: 50px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    max-width: 700px;
+    width:100%;
+    height: 300px;
+}
+.main-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  
+}
+.menu-container{
+  display: flex;
+    justify-content: center;
+    background-color: #000;
+    border-radius: 60px;
+    max-width: 700px;
+    width:100%;
+   padding: 30px;
+   margin-top: 30px;
+
+}
+.menu-container Button{
+  margin-right:30px;
+}
+
+.menu-container Button:hover{
+  background-color: #ffc107;
+}
