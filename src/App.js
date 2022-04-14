@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import PublicNavbar from "./components/PublicNavbar";
-import { Col, Container, Row } from "react-bootstrap";
-import Menu from "./components/Menu";
-import WeatherInfo from "./components/WeatherInfo";
+import { Container } from "react-bootstrap";
+import WeatherButton from "./components/WeatherButton";
+import WeatherBox from "./components/WeatherBox";
 import { ClipLoader } from "react-spinners";
 
 const cities = ["hanoi", "paris", "new york", "seoul"];
@@ -12,7 +11,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 const App = () => {
   const [loading, setLoading] = useState(false);
-  const [selectedCity, setSelectedCity] = useState(null);
+  const [city, setCity] = useState(null);
   const [weather, setWeather] = useState(null);
   const [apiError, setAPIError] = useState("");
 
@@ -30,7 +29,7 @@ const App = () => {
     }
   };
 
-  const getUserLocation = () => {
+  const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
       getWeatherByCurrentLocation(latitude, longitude);
@@ -39,7 +38,7 @@ const App = () => {
 
   const getWeatherByCity = async () => {
     try {
-      let url = `https://api.openweathermap.org/data/2.5/weather?q=${selectedCity}&appid=${API_KEY}`;
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
       const res = await fetch(url);
       const data = await res.json();
 
@@ -53,20 +52,20 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (selectedCity == null) {
+    if (city == null) {
       setLoading(true);
-      getUserLocation();
+      getCurrentLocation();
     } else {
       setLoading(true);
       getWeatherByCity();
     }
-  }, [selectedCity]);
+  }, [city]);
 
   const handleCityChange = (city) => {
     if (city === "current") {
-      setSelectedCity(null);
+      setCity(null);
     } else {
-      setSelectedCity(city);
+      setCity(city);
     }
   };
 
@@ -79,11 +78,11 @@ const App = () => {
           </div>
         ) : !apiError ? (
           <div class="main-container">
-            <WeatherInfo weather={weather} />
-            <Menu
+            <WeatherBox weather={weather} />
+            <WeatherButton
               cities={cities}
               handleCityChange={handleCityChange}
-              selectedCity={selectedCity}
+              selectedCity={city}
             />
           </div>
         ) : (

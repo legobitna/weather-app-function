@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-const Menu = ({ cities, selectedCity, handleCityChange }) => {
+const WeatherButton = ({ cities, selectedCity, handleCityChange }) => {
   return (
     <div class="menu-container">
       <Button
@@ -23,4 +23,4 @@ const Menu = ({ cities, selectedCity, handleCityChange }) => {
   );
 };
 
-export default Menu;
+export default WeatherButton;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-const WeatherInfo = ({ weather }) => {
+const WeatherBox = ({ weather }) => {
   const temperatureC =
     weather && weather.main ? (weather.main.temp - 273.15).toFixed(2) : "";
   const temperatureF =
@@ -24,4 +24,4 @@ const WeatherInfo = ({ weather }) => {
   );
 };
 
-export default WeatherInfo;
+export default WeatherBox;
