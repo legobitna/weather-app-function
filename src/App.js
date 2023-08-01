@@ -11,7 +11,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 const App = () => {
   const [loading, setLoading] = useState(false);
-  const [city, setCity] = useState("ho chi minh");
+  const [city, setCity] = useState(null);
   const [weather, setWeather] = useState(null);
   const [apiError, setAPIError] = useState("");
 
@@ -52,13 +52,13 @@ const App = () => {
   };
 
   useEffect(() => {
-    // if (city == null) {
-    //   setLoading(true);
-    //   getCurrentLocation();
-    // } else {
+     if (city == null) {
+       setLoading(true);
+       getCurrentLocation();
+     } else {
     setLoading(true);
     getWeatherByCity();
-    // }
+     }
   }, [city]);
 
   const handleCityChange = (city) => {
